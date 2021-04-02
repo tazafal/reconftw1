@@ -1,7 +1,3 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
-
 const state = {
   sidebarShow: 'responsive',
   sidebarMinimize: false
@@ -21,7 +17,7 @@ const mutations = {
   }
 }
 
-export default new Vuex.Store({
+export default {
   state,
   mutations
-})
+}

@@ -22,7 +22,7 @@
       />
     </CSidebarBrand>
 
-    <CRenderFunction flat :content-to-render="$options.nav"/>
+    <CRenderFunction flat :content-to-render="navItems"/>
     <CSidebarMinimizer
       class="d-md-down-none"
       @click.native="$store.commit('set', ['sidebarMinimize', !minimize])"
@@ -32,17 +32,59 @@
 
 <script>
 import nav from './_nav'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'TheSidebar',
-  nav,
+  data () {
+    return {
+      nav,
+    }
+  },
   computed: {
     show () {
       return this.$store.state.sidebarShow 
     },
     minimize () {
       return this.$store.state.sidebarMinimize 
-    }
+    },
+    navItems () {
+      return [
+        {
+          _name: 'CSidebarNav',
+          _children: this.sidebarNavChildren
+        }
+      ]
+    },
+    sidebarNavChildren () {
+      return nav.map((menuItem) => {
+        if((menuItem.empty && this.getTarget.target) || ( !menuItem.empty && !this.getTarget.target)){
+          return false
+        }else if( menuItem.empty){
+          return {
+            _name: menuItem._name,
+            name: menuItem.name,
+            to: menuItem.to ? menuItem.to : undefined,
+            icon: menuItem.icon || 'cil-spreadsheet',
+            _class: menuItem._class ? menuItem._class : 'bg-dark text-white',
+            target: menuItem.target || undefined
+            
+          }
+        }else{
+          return {
+            _name: menuItem._name,
+            name: menuItem.name,
+            to: menuItem.to ? menuItem.to : undefined,
+            icon: menuItem.icon || 'cil-spreadsheet',
+            _class: menuItem._class ? menuItem._class : 'bg-dark text-white',
+            target: menuItem.target || undefined
+          }
+        }
+      })
+    },
+    ...mapGetters([
+      'getTarget'
+    ]),
   }
 }
 </script>
