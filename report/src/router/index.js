@@ -6,6 +6,7 @@ const TheContainer = () => import('@/containers/TheContainer')
 
 // Views
 const Dashboard = () => import('@/views/Dashboard')
+const Subdomains = () => import('@/views/pages/Subdomains')
 
 
 
@@ -30,6 +31,11 @@ function configRoutes () {
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+        },
+        {
+          path: 'subdomains',
+          name: 'Subdomains',
+          component: Subdomains
         },
       ]
     }

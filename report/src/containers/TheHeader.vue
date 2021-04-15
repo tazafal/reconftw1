@@ -17,7 +17,7 @@
       <label for="Target" class="h5 pl-2 mr-3">Target </label>
       <select v-if="targets.length" class="select form-control" @change="sendTarget($event.target.value)" name="Target">
         <option value=""> -Select Target- </option>
-        <option v-for="target in targets" :value="target" :selected="getTarget && getTarget.name == target">{{ target }}</option>
+        <option v-for="target in targets" :value="target" :selected="getTarget && getTarget.target == target">{{ target }}</option>
       </select>
     </CHeaderNav>
     <CHeaderNav class="mr-4">

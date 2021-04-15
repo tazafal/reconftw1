@@ -1,3 +1,6 @@
+import router from '../../router'
+
+
 /*
 |--------------------------------------------------------------------------
 | Mutation Types
@@ -40,6 +43,8 @@ const actions = {
 	setTarget: (context, target) => {
 		console.log(target,"------")
 		context.commit(SET_TARGET, {target})
+		router.push({ name: 'Subdomains' })
+
 	},
 	unsetTarget: (context) => {
 		context.commit(UNSET_TARGET)
